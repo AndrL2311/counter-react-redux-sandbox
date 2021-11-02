@@ -11,8 +11,8 @@ function Counter({ value, onIncrement, onDecrement, step }) {
       <Value value={value} />
       <Controls
         step={step}
-        onIncrement={onIncrement}
-        onDecrement={onDecrement}
+        onIncrement={() => onIncrement(step)}
+        onDecrement={() => onDecrement(step)}
       />
       Counter
     </div>
@@ -28,8 +28,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrement: () => dispatch(action.increment(1)),
-    onDecrement: () => dispatch(action.decrement(1)),
+    onIncrement: (value) => dispatch(action.increment(value)),
+    onDecrement: (value) => dispatch(action.decrement(value)),
   };
 };
 
