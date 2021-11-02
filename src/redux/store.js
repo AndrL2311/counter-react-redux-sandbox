@@ -1,38 +1,30 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const initialState = {
-  counter: {
-    value: 10,
-    step: 1,
-  },
-};
-
-// createStore(reducer, [preloadedState], [enhancer])
-// Используем редюсер-болванку const reducer = (state = {}, action) => state
-const reducer = (state = initialState, { type, payload }) => {
+const valueReducer = (state = 10, { type, payload }) => {
   switch (type) {
     case "counter/Increment":
-      return {
-        ...state,
-        counter: {
-          ...state.counter,
-          value: state.counter.value + payload,
-        },
-      };
+      return state + payload;
+
     case "counter/Decrement":
-      return {
-        ...state,
-        counter: {
-          ...state.counter,
-          value: state.counter.value - payload,
-        },
-      };
+      return state - payload;
+
     default:
       return state;
   }
 };
 
-const store = createStore(reducer, composeWithDevTools());
+const stepReduser = (state = 1, action) => state;
+
+const counterReducer = combineReducers({
+  value: valueReducer,
+  step: stepReduser,
+});
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+});
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;
