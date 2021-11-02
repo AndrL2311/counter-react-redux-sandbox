@@ -21,14 +21,14 @@ function Counter({ value, onIncrement, onDecrement }) {
 
 const mapStateToProps = (state) => {
   return {
-    value: state.counterValue,
+    value: state.counter.value,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrement: () => dispatch(action.increment(5)),
-    onDecrement: () => dispatch(action.decrement(5)),
+    onIncrement: () => dispatch(action.increment(1)),
+    onDecrement: () => dispatch(action.decrement(1)),
   };
 };
 
