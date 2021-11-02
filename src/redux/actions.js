@@ -7,7 +7,7 @@ export const increment = (value) => {
 
 export const decrement = (value) => {
   return {
-    type: "counter/Increment",
+    type: "counter/Decrement",
     payload: value,
   };
 };
