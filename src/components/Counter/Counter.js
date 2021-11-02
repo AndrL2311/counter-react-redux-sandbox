@@ -5,12 +5,12 @@ import Value from "./Value";
 import * as action from "../../redux/actions";
 import "./Counter.css";
 
-function Counter({ value, onIncrement, onDecrement }) {
+function Counter({ value, onIncrement, onDecrement, step }) {
   return (
     <div className="Counter">
       <Value value={value} />
       <Controls
-        // step={step}
+        step={step}
         onIncrement={onIncrement}
         onDecrement={onDecrement}
       />
@@ -22,6 +22,7 @@ function Counter({ value, onIncrement, onDecrement }) {
 const mapStateToProps = (state) => {
   return {
     value: state.counter.value,
+    step: state.counter.step,
   };
 };
 
